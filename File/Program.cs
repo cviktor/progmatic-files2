@@ -40,11 +40,38 @@ namespace File
             //ha nem állítunk Position-t akkor az elsõ karaktert írná felül
             //file.Seek(0, SeekOrigin.End);
             //file.WriteByte((byte)'!');
-            sw.BaseStream.Seek(0, SeekOrigin.End);
-            sw.Write("world");
-            sw.Flush(); //bufferelés miatt kell
+            try
+            {
+                WriteHello(sw);
+
+            }
+            catch
+            {
+                Console.WriteLine("hiba történt");
+            }
+
+            sw = null;
+            file = null;
 
             Console.ReadKey();
+        }
+
+        private static void WriteHello(StreamWriter sw)
+        {
+            try
+            {
+                sw.BaseStream.Seek(0, SeekOrigin.End);
+                sw.Write("hello");
+                sw.Write("world");
+                sw.Write("!!!");
+                throw new Exception();
+            }
+            finally
+            {
+                sw.Flush(); //bufferelés miatt kell
+                sw.Close(); //ezzel jelezzük hogy a fájlt már nem használjuk többet
+                            //sw.Write("hiba"); hibát fog dobni mert már lezártuk
+            }
         }
     }
 }
