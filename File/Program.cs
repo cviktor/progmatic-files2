@@ -14,8 +14,8 @@ namespace File
             //relatív elérési út az exe fájl helyétõl
             //FileStream file = new FileStream(@"..\..\hello.txt", FileMode.Open);
             //abszolút elérési út (egy meghajtó névvel kezdõdik és mindig ugyan oda mutat mindegy hol az exe)
-            FileStream file = new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open);
-            StreamWriter sw = new StreamWriter(file);
+            //FileStream file = new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open);
+            //StreamWriter sw = new StreamWriter(file);
 
             //for (int i = 0; i < 6; i++)
             //{
@@ -42,7 +42,7 @@ namespace File
             //file.WriteByte((byte)'!');
             try
             {
-                WriteHello(sw);
+                WriteHello();
 
             }
             catch
@@ -50,27 +50,19 @@ namespace File
                 Console.WriteLine("hiba történt");
             }
 
-            sw = null;
-            file = null;
-
             Console.ReadKey();
         }
 
-        private static void WriteHello(StreamWriter sw)
+        private static void WriteHello()
         {
-            try
+
+            using (StreamWriter sw = new StreamWriter(new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open)))
             {
                 sw.BaseStream.Seek(0, SeekOrigin.End);
                 sw.Write("hello");
                 sw.Write("world");
                 throw new Exception();
                 sw.Write("!!!");
-            }
-            finally
-            {
-                sw.Flush(); //bufferelés miatt kell
-                sw.Close(); //ezzel jelezzük hogy a fájlt már nem használjuk többet
-                            //sw.Write("hiba"); hibát fog dobni mert már lezártuk
             }
         }
     }
