@@ -63,8 +63,8 @@ namespace File
                 sw.BaseStream.Seek(0, SeekOrigin.End);
                 sw.Write("hello");
                 sw.Write("world");
-                sw.Write("!!!");
                 throw new Exception();
+                sw.Write("!!!");
             }
             finally
             {
