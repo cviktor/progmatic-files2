@@ -24,12 +24,18 @@ namespace File
             //    Console.WriteLine((char)b);
             //}
 
-            while(file.Position < file.Length)
-            {
-                int b = file.ReadByte();
-                Console.WriteLine(b);
-                Console.WriteLine((char)b);
-            }
+            //while (file.Position < file.Length)
+            //{
+            //    int b = file.ReadByte();
+            //    Console.WriteLine(b);
+            //    Console.WriteLine((char)b);
+            //}
+
+            file.Seek(-1, SeekOrigin.End);
+            //file.Seek(-2, SeekOrigin.Current);
+            int b = file.ReadByte();
+            Console.WriteLine(b);
+            Console.WriteLine((char)b);
 
             Console.ReadKey();
         }
