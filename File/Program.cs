@@ -40,22 +40,29 @@ namespace File
             //ha nem állítunk Position-t akkor az elsõ karaktert írná felül
             //file.Seek(0, SeekOrigin.End);
             //file.WriteByte((byte)'!');
-            try
-            {
-                WriteHello();
+            //try
+            //{
+            //    WriteHello();
 
-            }
-            catch
+            //}
+            //catch
+            //{
+            //    Console.WriteLine("hiba történt");
+            //}
+
+            Console.WriteLine("using blokk elõtt");
+            using(Test t = new Test())
             {
-                Console.WriteLine("hiba történt");
+                Console.WriteLine("using blokk belseje");
             }
+            Console.WriteLine("using blokk után");
 
             Console.ReadKey();
         }
 
         private static void WriteHello()
         {
-
+            //using(FileStream fs = new FileStream(...))
             using (StreamWriter sw = new StreamWriter(new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open)))
             {
                 sw.BaseStream.Seek(0, SeekOrigin.End);
@@ -63,6 +70,7 @@ namespace File
                 sw.Write("world");
                 throw new Exception();
                 sw.Write("!!!");
+                
             }
         }
     }
