@@ -15,7 +15,7 @@ namespace File
             //FileStream file = new FileStream(@"..\..\hello.txt", FileMode.Open);
             //abszolút elérési út (egy meghajtó névvel kezdõdik és mindig ugyan oda mutat mindegy hol az exe)
             FileStream file = new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open);
-
+            StreamWriter sw = new StreamWriter(file);
 
             //for (int i = 0; i < 6; i++)
             //{
@@ -38,8 +38,11 @@ namespace File
             //Console.WriteLine((char)b);
 
             //ha nem állítunk Position-t akkor az elsõ karaktert írná felül
-            file.Seek(0, SeekOrigin.End);
-            file.WriteByte((byte)'!');
+            //file.Seek(0, SeekOrigin.End);
+            //file.WriteByte((byte)'!');
+            sw.BaseStream.Seek(0, SeekOrigin.End);
+            sw.Write("world");
+            sw.Flush(); //bufferelés miatt kell
 
             Console.ReadKey();
         }
