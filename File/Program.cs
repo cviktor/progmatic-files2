@@ -17,13 +17,19 @@ namespace File
             FileStream file = new FileStream(@"F:\Projects\Progmatic\2018-07-23\File\File\hello.txt", FileMode.Open);
 
 
-            for (int i = 0; i < 5; i++)
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    int b = file.ReadByte(); //int-et ad vissza mert a fájl végén -1-et fog vissz adni ami ugye nem egy érvényes byte érték
+            //    Console.WriteLine(b);
+            //    Console.WriteLine((char)b);
+            //}
+
+            while(file.Position < file.Length)
             {
                 int b = file.ReadByte();
                 Console.WriteLine(b);
                 Console.WriteLine((char)b);
             }
-
 
             Console.ReadKey();
         }
