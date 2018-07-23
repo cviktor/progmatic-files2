@@ -31,11 +31,15 @@ namespace File
             //    Console.WriteLine((char)b);
             //}
 
-            file.Seek(-1, SeekOrigin.End);
-            //file.Seek(-2, SeekOrigin.Current);
-            int b = file.ReadByte();
-            Console.WriteLine(b);
-            Console.WriteLine((char)b);
+            //file.Seek(-1, SeekOrigin.End);
+            ////file.Seek(-2, SeekOrigin.Current);
+            //int b = file.ReadByte();
+            //Console.WriteLine(b);
+            //Console.WriteLine((char)b);
+
+            //ha nem állítunk Position-t akkor az elsõ karaktert írná felül
+            file.Seek(0, SeekOrigin.End);
+            file.WriteByte((byte)'!');
 
             Console.ReadKey();
         }
